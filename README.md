@@ -1,4 +1,6 @@
-# Criando e executando um aplicativo Java
+# Github Wagner - POO 2024.1
+
+### Criando e executando um aplicativo Java
 
 * Compilando:
 
