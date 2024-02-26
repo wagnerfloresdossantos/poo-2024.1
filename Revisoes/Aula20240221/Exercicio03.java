@@ -20,9 +20,8 @@ public class Exercicio03 {
     // variavel para o contador de tentativas
     int tentativas = 0;
     
-    // variavel para verificação de palpite duplicado em sequência
-    int palpiteAnterior = 0;
-    
+    // Vetor para contar a quantidade de cada palpite anterior
+    int[] contadorPalpiteAnterior = new int [100];    
 
     System.out.println("tente descobrir um numero entre 1 e 100");
         
@@ -33,8 +32,9 @@ public class Exercicio03 {
          palpite = teclado.nextInt();
          tentativas++;
 
-         if (palpite == palpiteAnterior){
-            System.out.println("Você escolheu 2 vezes o número: " + palpite);
+         if (contadorPalpiteAnterior [palpite - 1] > 0){
+            System.out.println("Você escolheu " + contadorPalpiteAnterior[palpite - 1] + " vezes .. tente outro");
+    
         } else{
              if (palpite == numeroSorteado){
                  System.out.println("Parabéns você acertou em " + tentativas + ".");
@@ -43,8 +43,9 @@ public class Exercicio03 {
              } else {
                  System.out.println("Experimente um número menor, o número sorteado está entre 1 e " + (palpite - 1) + ".");
              }
-             palpiteAnterior = palpite;
-        }
+          
+            }
+            contadorPalpiteAnterior[palpite - 1]++;
      } while (palpite != numeroSorteado);
     }  
 }
