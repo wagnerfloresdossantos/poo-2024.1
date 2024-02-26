@@ -15,3 +15,4 @@ java Arquivo
 ## [Revisões](./Revisoes )
 * [Aula 19/02/24](./Revisoes/Aula20240219/) - Github
 * [Aula 21/02/24](./Revisoes/Aula20240221/) - Introdução a Linguagem Java
+* [Aula 26/02/24](./Revisoes/Aula20240226/) - Projetos Java com Gradle
