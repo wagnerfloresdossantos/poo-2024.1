@@ -4,20 +4,23 @@ public class Carro {
 
 
     // Atributos
-    private double velocidade;
-    private String modelo;
+    private double velocidadeAtual;
+    private final double VELOCIDADE_MAX;
 
-    // Métodos
-    public void acelerar(double v){
-        velocidade+=v;
+    public Carro(double vMax) {
+        this.velocidadeAtual = 0;
+        this.VELOCIDADE_MAX = vMax;
+
     }
 
-    public void frear(double v){
-        velocidade-=v;
+    public static String aceleracao(){
+        return "9,8/w*s";
     }
 
-    public double obterVelocidade(){
-        return velocidade;
+    public double getVelocidadeAtual(){
+        return velocidadeAtual;
     }
+
+
 
 }
