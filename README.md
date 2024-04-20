@@ -43,4 +43,15 @@ org.gradle.logging.level=quiet
 * [Aula 21/02/24](./Revisoes/Aula20240221/) - Introdução a Linguagem Java
 * [Aula 26/02/24](./Revisoes/Aula20240226/) - Projetos Java com Gradle
 * [Aula 28/02/24](./Revisoes/Aula20240228/) - Projetos Java com Gradle 2
-* [Aula 28/02/24](./Revisoes/Aula20240306/) - Projetos Orientação a Objetos
+* [Aula 06/03/24](./Revisoes/Aula20240306/) - Projetos Orientação a Objetos
+* [Aula 08/03/24](./Revisoes/Lista1-Alisson-Wagner/) - Lista 1
+* [Aula 27/03/24](./Revisoes/Aula20240327/) - Projetos Draw (Algs4)
+* [Aula 20/03/24](./Revisoes/Aula20240320/) - Projetos Horario, Retangulo, Data e Ponto
+* [Aula 08/04/28](./Revisoes/Aula20240408/) - Projetos Colections
+* [Aula 10/04/24](./Revisoes/Aula20240410/) - Projetos Livro e Carro
+* [Aula 17/04/24](./Revisoes/Agenda/) - Projeto Agenda
+
+
+
+
+
