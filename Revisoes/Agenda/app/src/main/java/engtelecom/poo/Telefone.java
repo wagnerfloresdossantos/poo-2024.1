@@ -15,6 +15,22 @@ public class Telefone {
         this.numeroTelefone = numeroTelefone;
     }
 
+    public String getRotulo() {
+        return rotulo;
+    }
+
+    public void setRotulo(String rotulo) {
+        this.rotulo = rotulo;
+    }
+
+    public String getNumeroTelefone() {
+        return numeroTelefone;
+    }
+
+    public void setNumeroTelefone(String numeroTelefone) {
+        this.numeroTelefone = numeroTelefone;
+    }
+
     public String formata(String mascara, String valor){
         MaskFormatter mask = null;
         String resultado = "";

@@ -7,7 +7,7 @@ public class Email {
 
     public Email(String rotulo, String email) {
         this.rotulo = rotulo;
-        this.email = email;
+        setEmail(email);
     }
 
     public String getRotulo() {
@@ -22,22 +22,23 @@ public class Email {
         return email;
     }
 
-    public void setEmail(String email) {
+    public boolean setEmail(String email) {
 
-        this.email = email;
+        String eRR ="^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+
+        if(email.matches(eRR)) {
+            this.email = email;
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    public boolean testaEmail(String email) {
-
-        return true;
+    @Override
+    public String toString() {
+        return "Email{" +
+                "rotulo='" + rotulo + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
-
-    /*
-    // Valida e-mail
-    String eR = "^[\\w−\\+]+(\\.[\\w]+)∗@[\\w−]+(\\.[\\w]+)∗(\\.[a−z]{2,})$";
-    String email = "meu.email@dominio.com.br";
-    System.out.println("Email válido? " + email.matches(eR));
-    */
-
-
 }

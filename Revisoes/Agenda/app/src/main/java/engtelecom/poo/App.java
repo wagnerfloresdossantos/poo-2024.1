@@ -3,16 +3,288 @@
  */
 package engtelecom.poo;
 
+import java.sql.SQLOutput;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
 public class App {
 
-    public static void main(String[] args) {
+        private final Agenda agenda;
 
-        Telefone telefone = new Telefone("comercial","48999815336");
+        public App() {
+                this.agenda = new Agenda();
+        }
 
-        System.out.println(telefone);
+        public int menu() {
+
+                Scanner entrada = new Scanner(System.in);
+
+                System.out.printf("..::AGENDA::..\n" +
+                "1 - Adicionar Contato\n" +
+                "2 - Remover Contato\n" +
+                "3 - Adicionar Telefone\n" +
+                "4 - Adicionar E-mail\n" +
+                "5 - Atualizar Telefone\n" +
+                "6 - Atualizar E-mail\n" +
+                "7 - Remover Telefone\n" +
+                "8 - Remover E-mail\n" +
+                "9 - Sair \n" +
+                "> ");
+
+                int opcao = entrada.nextInt();
+                return opcao;
+        }
+
+        public boolean adicionarContato() {
+
+                Scanner entrada = new Scanner(System.in);
+
+                System.out.println("Nome:");
+                String nome = entrada.nextLine();
+                System.out.println("Sobrenome:");
+                String sobrenome = entrada.nextLine();
+                System.out.println("Data de Nascimento do aluno (formato AAAA-MM-DD:)");
+                String dataNascimento = entrada.nextLine();
+                System.out.println("Rótulo Telefone:");
+                String rotuloTelefone = entrada.nextLine();
+                System.out.println("Número Telefone:");
+                String numTelefone = entrada.nextLine();
+                System.out.println("Rótulo E-mail:");
+                String rotuloEmail = entrada.nextLine();
+                System.out.println("E-mail:");
+                String email = entrada.nextLine();
+
+                LocalDate dataNasc = LocalDate.parse(dataNascimento);
+
+                Contato novoContato = new Contato(nome,sobrenome,dataNasc);
+
+                novoContato.addTelefone(rotuloTelefone, numTelefone);
+                novoContato.addEmail(rotuloEmail, email);
+                agenda.addContato(novoContato);
+                System.out.println(novoContato);
+                return true;
+
+        }
+
+        public boolean removeContato(){
+                Scanner entrada = new Scanner(System.in);
+                System.out.println("Digite o nome do contato; ");
+                String nome = entrada.nextLine();
+                System.out.println("Digite o sobrenome; ");
+                String sobrenome = entrada.nextLine();
+
+                return agenda.removeContato(nome,sobrenome);
+        }
+
+        public boolean adicionaTelefone(){
+                Scanner entrada = new Scanner(System.in);
+                System.out.println("Digite o nome do Contato; ");
+                String nome = entrada.nextLine();
+                System.out.println("Sobrenome:");
+                String sobrenome = entrada.nextLine();
+                System.out.println("Data de Nascimento do aluno (formato AAAA-MM-DD:)");
+                String dataNascimento = entrada.nextLine();
+                System.out.println("Digite o Rótulo do Telefone; ");
+                String rotulo = entrada.nextLine();
+                System.out.println("Digite o numero do Telefone; ");
+                String telefone = entrada.nextLine();
+
+                LocalDate dataNasc = LocalDate.parse(dataNascimento);
+
+                Contato novoContato = new Contato(nome,sobrenome,dataNasc);
+
+                return agenda.addTelefone(rotulo,telefone,novoContato);
+        }
+
+
+        public boolean adicionaEmail(){
+                Scanner entrada = new Scanner(System.in);
+                System.out.println("Digite o nome do Contato; ");
+                String nome = entrada.nextLine();
+                System.out.println("Sobrenome:");
+                String sobrenome = entrada.nextLine();
+                System.out.println("Data de Nascimento do aluno (formato AAAA-MM-DD:)");
+                String dataNascimento = entrada.nextLine();
+                System.out.println("Digite o Rótulo do Email; ");
+                String rotulo = entrada.nextLine();
+                System.out.println("Digite o Email; ");
+                String email = entrada.nextLine();
+
+                LocalDate dataNasc = LocalDate.parse(dataNascimento);
+
+                Contato novoContato = new Contato(nome,sobrenome,dataNasc);
+
+                return agenda.addTelefone(rotulo,email,novoContato);
+        }
+
+        public boolean atualizaTelefone(){
+                Scanner entrada = new Scanner(System.in);
+                System.out.println("Digite o nome do Contato; ");
+                String nome = entrada.nextLine();
+                System.out.println("Sobrenome:");
+                String sobrenome = entrada.nextLine();
+                System.out.println("Data de Nascimento do aluno (formato AAAA-MM-DD:)");
+                String dataNascimento = entrada.nextLine();
+                System.out.println("Digite o Rótulo do Telefone; ");
+                String rotulo = entrada.nextLine();
+                System.out.println("Digite o numero do Telefone; ");
+                String telefone = entrada.nextLine();
+
+                LocalDate dataNasc = LocalDate.parse(dataNascimento);
+
+                Contato novoContato = new Contato(nome,sobrenome,dataNasc);
+
+                return agenda.updateTelefone(rotulo,telefone,novoContato);
+
+        }
+
+        public boolean atualizaEmail(){
+                Scanner entrada = new Scanner(System.in);
+                System.out.println("Digite o nome do Contato; ");
+                String nome = entrada.nextLine();
+                System.out.println("Sobrenome:");
+                String sobrenome = entrada.nextLine();
+                System.out.println("Data de Nascimento do aluno (formato AAAA-MM-DD:)");
+                String dataNascimento = entrada.nextLine();
+                System.out.println("Digite o Rótulo do Email; ");
+                String rotulo = entrada.nextLine();
+                System.out.println("Digite o Email; ");
+                String telefone = entrada.nextLine();
+
+                LocalDate dataNasc = LocalDate.parse(dataNascimento);
+
+                Contato novoContato = new Contato(nome,sobrenome,dataNasc);
+
+                return agenda.updateEmail(rotulo,telefone,novoContato);
+        }
+
+        public boolean removeTelefone(){
+                Scanner entrada = new Scanner(System.in);
+                System.out.println("Digite o nome do Contato; ");
+                String nome = entrada.nextLine();
+                System.out.println("Sobrenome:");
+                String sobrenome = entrada.nextLine();
+                System.out.println("Data de Nascimento do aluno (formato AAAA-MM-DD:)");
+                String dataNascimento = entrada.nextLine();
+                System.out.println("Digite o Rótulo do Telefone; ");
+                String rotulo = entrada.nextLine();
+
+                LocalDate dataNasc = LocalDate.parse(dataNascimento);
+
+                Contato novoContato = new Contato(nome,sobrenome,dataNasc);
+
+                return agenda.removeTelefone(rotulo,novoContato);
+
+        }
+
+        public boolean removeEmail(){
+                Scanner entrada = new Scanner(System.in);
+                System.out.println("Digite o nome do Contato; ");
+                String nome = entrada.nextLine();
+                System.out.println("Sobrenome:");
+                String sobrenome = entrada.nextLine();
+                System.out.println("Data de Nascimento do aluno (formato AAAA-MM-DD:)");
+                String dataNascimento = entrada.nextLine();
+                System.out.println("Digite o Rótulo do Email; ");
+                String rotulo = entrada.nextLine();
+
+                LocalDate dataNasc = LocalDate.parse(dataNascimento);
+
+                Contato novoContato = new Contato(nome,sobrenome,dataNasc);
+
+                return agenda.removeEmail(rotulo,novoContato);
+        }
 
 
 
+        public static void main(String[] args) {
+
+
+            App app = new App();
+            int opcao;
+
+            do {
+                    opcao = app.menu();
+
+                    switch (opcao) {
+
+                          case 1 -> app.adicionarContato();
+                          case 2 -> app.removeContato();
+                          case 3 -> app.adicionaTelefone();
+                          case 4 -> app.adicionaEmail();
+                          case 5 -> app.atualizaTelefone();
+                          case 6 -> app.atualizaEmail();
+                          case 7 -> app.removeTelefone();
+                          case 8 -> app.removeEmail();
+
+                    }
+            } while (opcao != 9);
 
     }
+
+
+
+
+
+
+       // Telefone telefone = new Telefone("comercial","48999815336");
+       // System.out.println(telefone);
+
+       // Email emailA = new Email("pessoal", "wagner.fs@aluno.ifsc.edu.br");
+       // Email emailB = new Email("pessoal", "wagner.fsaluno.ifsc.edu.br");
+
+      //  System.out.println(emailA);
+      //  System.out.println(emailB);
+/*
+        Contato novoContato = new Contato("Wagner", "Santos", LocalDate.parse("1981-06-06"));
+        novoContato.addEmail("Comercial", "wagner@ifsc.edu.br");
+        novoContato.addTelefone("Pessoal", "48999815336");
+
+
+ */
+        //novoContato.addEmail("Wagner", "wagnerifsc.edu.br");
+
+       // System.out.println(Wagner);
+
+       // Wagner.removeTelefone("Wagner");
+      //  Wagner.removeEmail("Wagner");
+
+   //     System.out.println(Wagner);
+
+        //novoContato.updateTelefone("Wagner", "48999446265");
+        //novoContato.updateEmail("Wagner", "carlos@carlos.com.br");
+
+       // System.out.println(Wagner);
+/*
+        Agenda agenda = new Agenda();
+
+        agenda.addContato(novoContato);
+
+        System.out.println(agenda);
+
+
+ */
+        //agenda.removeContato("Wagner", "Santos");
+
+        //agenda.addTelefone("Comercial","4855555555",Wagner);
+        //agenda.addEmail("Comercial", "wu@eu.com.br",Wagner);
+
+        //System.out.println(agenda);
+
+        //agenda.updateTelefone("Comercial","4899999999",Wagner);
+
+        //agenda.updateEmail("Comercial","aaaa@aaaaa.aaa.aa", Wagner);
+
+        //agenda.removeTelefone("Comercial", Wagner);
+
+        //agenda.removeEmail("Wagner", Wagner);
+
+        //System.out.println(agenda);
+  //  }
+
+
+
 }
+
