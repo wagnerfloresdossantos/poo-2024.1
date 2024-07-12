@@ -27,10 +27,12 @@ public class App {
     public int menu(){
         Scanner entrada = new Scanner(System.in);
 
+        System.out.println();
         System.out.printf("..::ESCOLHA A OPÇÃO::..\n" +
                 "1 - Chamar Elevador para subir\n" +
                 "2 - Chamar Elevador para Descer\n" +
-                "3 - Selecionar andar de dentro do elevador\n");
+                "3 - Selecionar andar de dentro do elevador\n" +
+                "4 - Sair do Programa\n");
 
         int opcao = entrada.nextInt();
         return opcao;
@@ -46,6 +48,10 @@ public class App {
         Scanner enntrada = new Scanner(System.in);
         System.out.println("Digite o andar que você está: ");
         int andar = enntrada.nextInt();
+        if (andar < 0 || andar >= sistema.getNumAndares()) {
+            System.out.println("Andar inválido. Por favor, escolha um andar entre 0 e " + (sistema.getNumAndares() - 1));
+            return false;
+        }
         sistema.chamarElevador(andar, "subir");
         sistema.espera();
         return true;
@@ -61,6 +67,10 @@ public class App {
         Scanner enntrada = new Scanner(System.in);
         System.out.println("Digite o andar que você está: ");
         int andar = enntrada.nextInt();
+        if (andar < 0 || andar >= sistema.getNumAndares()) {
+            System.out.println("Andar inválido. Por favor, escolha um andar entre 0 e " + (sistema.getNumAndares() - 1));
+            return false;
+        }
         sistema.chamarElevador(andar, "descer");
         sistema.espera();
         return true;
@@ -75,10 +85,13 @@ public class App {
         Scanner enntrada = new Scanner(System.in);
         System.out.println("Digite o andar: ");
         int andar = enntrada.nextInt();
+        if (andar < 0 || andar >= sistema.getNumAndares()) {
+            System.out.println("Andar inválido. Por favor, escolha um andar entre 0 e " + (sistema.getNumAndares() - 1));
+            return false;
+        }
         sistema.selecionaAndar(andar);
         sistema.espera();
         return true;
-
     }
 
     /**

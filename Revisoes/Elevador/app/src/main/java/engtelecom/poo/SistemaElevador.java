@@ -17,6 +17,7 @@ public class SistemaElevador {
     private Elevador elevador;
     private PainelInterno painelInterno;
     private ArrayList<PainelAndar> paineisAndar;
+    private int numAndares;
 
     /**
      * Método contrutor
@@ -29,6 +30,7 @@ public class SistemaElevador {
        for (int i=0; i < numAndares; i++){
            paineisAndar.add(new PainelAndar(i));
         }
+       this.numAndares = numAndares;
     }
 
     /**
@@ -88,6 +90,11 @@ public class SistemaElevador {
         }
     }
 
-
-
+    /**
+     * Método Get para número de andares
+     * @return numero de andares
+     */
+    public int getNumAndares() {
+        return numAndares;
+    }
 }
