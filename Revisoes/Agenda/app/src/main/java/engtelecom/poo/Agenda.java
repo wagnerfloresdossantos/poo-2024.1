@@ -1,6 +1,8 @@
 package engtelecom.poo;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Agenda {
 
@@ -10,91 +12,82 @@ public class Agenda {
         agenda = new ArrayList<>();
     }
 
+    public ArrayList<Contato> getAgenda() {
+        return agenda;
+    }
+
     public boolean addContato(Contato c){
         if(agenda.contains(c)) {
-            System.out.println("Contato já existe!\n");
+            System.out.println("\nContato já existe!\n");
             return false;
         }
         agenda.add(c);
-        System.out.println("Contato Adicionado\n");
+        System.out.println("\nContato Adicionado!\n");
         return true;
     }
 
     public boolean removeContato(String n, String s){
-        return agenda.removeIf(elemento->elemento.getNome().equals(n) && elemento.getSobrenome().equals(s));;
+        return agenda.removeIf(elemento->elemento.getNome().equals(n) && elemento.getSobrenome().equals(s));
     }
 
-    public boolean addTelefone(String r, String n, Contato c){
-        if (agenda.contains(c)){agenda.forEach(contato -> {
-            if (contato.equals(c)) {contato.addTelefone(r, n);
-            }
-        });
-            System.out.println("Telefone removido!\n");
-            return true;
+    public boolean addTelefone(String r, String n, int posicao){
+        try {
+            return this.agenda.get(posicao).addTelefone(r, n);
+        } catch (Exception e){
+            return false;
         }
-        System.out.println("Contato não encontrato!\n");
-        return false;
     }
 
-    public boolean addEmail(String r, String e, Contato c){
-        if (agenda.contains(c)){agenda.forEach(contato -> {
-            if (contato.equals(c)) {contato.addEmail(r, e);
-            }
-        });
-            System.out.println("Email removido!\n");
-            return true;
+    public boolean addEmail(String r, String m, int posicao){
+        try {
+            return this.agenda.get(posicao).addEmail(r, m);
+        } catch (Exception e){
+            return false;
         }
-        System.out.println("Contato nao encontrado!\n");
-        return false;
     }
 
-    public boolean updateTelefone(String r, String n, Contato c){
-        if (agenda.contains(c)){agenda.forEach(contato -> {
-            if (contato.equals(c)) {contato.updateTelefone(r, n);
-            }
-        });
-            System.out.println("Telefone alterado!");
-            return true;
+    public boolean updateTelefone(String r, String n, int posicao){
+        try {
+            return this.agenda.get(posicao).updateTelefone(r, n);
+        } catch (Exception e){
+            return false;
         }
-        System.out.println("Contato não encontrado!");
-        return false;
     }
 
-
-    public boolean updateEmail(String r, String n, Contato c){
-        if (agenda.contains(c)){agenda.forEach(contato -> {
-            if (contato.equals(c)) {contato.updateEmail(r, n);
-            }
-        });
-            System.out.println("Email Alterado!\n");
-            return true;
+    public boolean updateEmail(String r, String n, int posicao){
+        try {
+            return this.agenda.get(posicao).updateEmail(r, n);
+        } catch (Exception e){
+            return false;
         }
-        System.out.println("Contato não encontrato!\n");
-        return false;
     }
 
-    public boolean removeTelefone(String r, Contato c){
-        if (agenda.contains(c)){agenda.forEach(contato -> {
-            if (contato.equals(c)) {contato.removeTelefone(r);
-            }
-        });
-            System.out.println("Telefone removido!\n");
-            return true;
+    public boolean removeTelefone(String r, int posicao){
+        try {
+            return this.agenda.get(posicao).removeTelefone(r);
+        } catch (Exception e){
+            return false;
         }
-        System.out.println("Cadastro não encontrado\n");
-        return false;
     }
 
-    public boolean removeEmail(String r, Contato c){
-        if (agenda.contains(c)){agenda.forEach(contato -> {
-            if (contato.equals(c)) {contato.removeEmail(r);
-            }
-        });
-            return true;
+    public boolean removeEmail(String r, int posicao){
+        try {
+            return this.agenda.get(posicao).removeEmail(r);
+        } catch (Exception e){
+            return false;
         }
-        return false;
     }
 
+    public boolean listaTodosContatos(){
+
+        int i = 0;
+        for(Contato contato: this.agenda){
+            System.out.print("Posição: " + i + " ");
+            System.out.println(contato);
+            i++;
+        }
+        return true;
+    }
 
 
     @Override

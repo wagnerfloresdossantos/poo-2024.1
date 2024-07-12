@@ -88,6 +88,15 @@ public class App {
     }
 
     public boolean listarTodosAulunos() {
+
+        Scanner entrada = new Scanner(System.in);
+        String matricula = entrada.nextLine();
+
+        bancoDeDados.forEach( -> System.out.println(aluno.toString());
+        );
+
+
+
           return false;
 
     }

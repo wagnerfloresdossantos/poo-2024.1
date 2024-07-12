@@ -23,15 +23,12 @@ public class Contato {
 
     public boolean addTelefone(String r, String n){
        Telefone tel = new Telefone(r,n);
-        return telefones.add(tel);
+       return telefones.add(tel);
     }
 
     public boolean addEmail(String r, String e){
         Email email = new Email(r,e);
-        if (email.getEmail() != null){
-            return emails.add(email);
-        }
-        return false;
+        return emails.add(email);
     }
 
     public boolean removeTelefone(String r) {
