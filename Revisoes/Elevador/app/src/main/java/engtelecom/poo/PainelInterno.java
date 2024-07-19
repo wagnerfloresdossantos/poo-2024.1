@@ -19,7 +19,7 @@ public class PainelInterno {
      */
     public PainelInterno(int numAndares) {
         botoes = new ArrayList<>(numAndares);
-        for (int i = 0; i < numAndares; i++){
+        for (int i = 0; i < numAndares; i++) {
             botoes.add(false);
         }
     }
@@ -28,15 +28,14 @@ public class PainelInterno {
      * Método que pressiona o botão
      * @param andar recebe como parâmetro o andar/botãoo que deve ser pressionado
      */
-    public void pressBotao(int andar){
+    public void pressBotao(int andar) {
         botoes.set(andar, true);
     }
-
     /**
      * Método que reseta o botão
      * @param andar recebe como parâmetro o andar/botãoo que deve ser pressionado
      */
-    public void resetBotao(int andar){
+    public void resetBotao(int andar) {
         botoes.set(andar, false);
     }
 

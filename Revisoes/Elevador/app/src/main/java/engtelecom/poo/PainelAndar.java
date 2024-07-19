@@ -5,15 +5,9 @@ package engtelecom.poo;
  * Contém métodos para pressionar, resetar e verificar estado dos botões
  */
 public class PainelAndar {
-
-    /**
-     * andar em que está o painel
-     * botão para selecionar descer de andar
-     * botão para selecionar subir de andar
-     */
     private int andar;
-    private boolean botaoDescer;
     private boolean botaoSubir;
+    private boolean botaoDescer;
 
     /**
      * Método Contrutor
@@ -28,52 +22,50 @@ public class PainelAndar {
     /**
      * Método para pressionar o botão subir
      */
-    public void pressBotaoSubir(){
-        botaoSubir = true;
+    public void pressBotaoSubir() {
+        this.botaoSubir = true;
     }
 
     /**
      * Metodo para pressionar o botão descer
      */
-    public void pressBotaoDescer(){
-        botaoDescer= true;
+    public void pressBotaoDescer() {
+        this.botaoDescer = true;
     }
 
     /**
-     * Método que retorna o estado atual do botão descer
-     * @return true ou false
+     * Reseta o botão para subir.
      */
-    public boolean isBotaoDescer() {
-        return botaoDescer;
+    public void resetBotaoSubir() {
+        this.botaoSubir = false;
     }
 
     /**
-     * Método que retorna o estado atual do botão subir
-     * @return true ou false
+     * Reseta o botão para descer.
      */
-    public boolean isBotaoSubir() {
+    public void resetBotaoDescer() {
+        this.botaoDescer = false;
+    }
+
+    /**
+     * Retorna o estado do botão para subir.
+     * @return true se o botão de subir está pressionado, caso contrário false.
+     */
+    public boolean getBotaoSubir() {
         return botaoSubir;
     }
 
     /**
-     * Método que reseta o botão subir
-     * false
+     * Retorna o estado do botão para descer.
+     * @return true se o botão de descer está pressionado, caso contrário false.
      */
-    public void resetBotaoSubir(){
-        botaoSubir = false;
+    public boolean getBotaoDescer() {
+        return botaoDescer;
     }
 
     /**
-     * Método que reseta o botão descer
-     * false
-     */
-    public void resetBotaoDescer(){
-        botaoDescer = false;
-    }
-
-    /**
-     * Métodp Get para o argumento andar
-     * @return andar
+     * Retorna o número do andar deste painel.
+     * @return O número do andar.
      */
     public int getAndar() {
         return andar;

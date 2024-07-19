@@ -29,7 +29,7 @@ public class Elevador {
         this.andarDesejado = 0;
         this.direcao = "parado";
         this.andarRequisitado = new ArrayList<>(numAndares);
-        for (int i=0; i<numAndares; i++){
+        for (int i = 0; i < numAndares; i++) {
             andarRequisitado.add(false);
         }
     }
@@ -38,7 +38,7 @@ public class Elevador {
      * Método que requisita o andar
      * @param andar andar requisitado
      */
-    public void requisitarAndar(int andar){
+    public void requisitarAndar(int andar) {
         andarRequisitado.set(andar, true);
         atualizaAndarDesejado();
     }
@@ -46,13 +46,13 @@ public class Elevador {
     /**
      * Método que move o elevador
      */
-    public void mover(){
-        if(andarAtual < andarDesejado){
+    public void mover() {
+        if (andarAtual < andarDesejado) {
             direcao = "subindo";
-            andarAtual ++;
+            andarAtual++;
         } else if (andarAtual > andarDesejado) {
             direcao = "descendo";
-            andarAtual --;
+            andarAtual--;
         } else {
             direcao = "parado";
             andarRequisitado.set(andarAtual, false);
@@ -63,9 +63,9 @@ public class Elevador {
     /**
      * Método que atualiza o andar desejado e é usado no Método mover()
      */
-    public void atualizaAndarDesejado(){
-        for (int i = 0; i < andarRequisitado.size(); i++){
-            if (andarRequisitado.get(i)){
+    private void atualizaAndarDesejado() {
+        for (int i = 0; i < andarRequisitado.size(); i++) {
+            if (andarRequisitado.get(i)) {
                 andarDesejado = i;
                 return;
             }

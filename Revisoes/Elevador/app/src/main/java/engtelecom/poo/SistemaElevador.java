@@ -3,98 +3,108 @@ package engtelecom.poo;
 import java.util.ArrayList;
 
 /**
- * Classe que representa o sistema de um elevador
- * Integra todas as partes (Elevador, PainelInterno e PainelExterno)
- * Contém os métodos para processar os passos da simulação e exibir o status do sistema
+ * Classe que representa o sistema de um elevador.
+ * Integra todas as partes (Elevador, PainelInterno e PainelAndar).
+ * Contém os métodos para processar os passos da simulação e exibir o status do sistema.
  */
 public class SistemaElevador {
-
-    /**
-     * Elevador
-     * Painel Interno
-     * ArrayList de paineis
-     */
     private Elevador elevador;
     private PainelInterno painelInterno;
     private ArrayList<PainelAndar> paineisAndar;
     private int numAndares;
 
     /**
-     * Método contrutor
-     * @param numAndares recebe como parâmetro o número de andares que terá o edifício
+     * Construtor que inicializa o sistema com o número de andares especificado.
+     * @param numAndares Número de andares do prédio.
      */
     public SistemaElevador(int numAndares) {
-       elevador = new Elevador(numAndares);
-       painelInterno = new PainelInterno(numAndares);
-       paineisAndar = new ArrayList<>(numAndares);
-       for (int i=0; i < numAndares; i++){
-           paineisAndar.add(new PainelAndar(i));
+        this.numAndares = numAndares;
+        elevador = new Elevador(numAndares);
+        painelInterno = new PainelInterno(numAndares);
+        paineisAndar = new ArrayList<>(numAndares);
+        for (int i = 0; i < numAndares; i++) {
+            paineisAndar.add(new PainelAndar(i));
         }
-       this.numAndares = numAndares;
     }
 
     /**
-     * Requisita o elevador para um determinado andar e direção
-     * Atualiza os dados dos botões no painel do andar e solicita o andar no elevador
-     * @param andar andar onde o elevador foi chamado
-     * @param direcao direção para qual o elevador foi chamado
+     * Método para chamar o elevador a partir de um andar específico e direção desejada.
+     * @param andar Andar de onde o elevador é chamado.
+     * @param direcao Direção desejada (subir ou descer).
      */
-    public void chamarElevador(int andar, String direcao){
-        if (direcao.equals("subir")){
+    public void chamarElevador(int andar, String direcao) throws InterruptedException {
+        if (direcao.equals("subir")) {
             paineisAndar.get(andar).pressBotaoSubir();
         } else if (direcao.equals("descer")) {
             paineisAndar.get(andar).pressBotaoDescer();
+        } else {
+            System.out.println("Direção inválida. Por favor, escolha 'subir' ou 'descer'.");
+            return;
         }
         elevador.requisitarAndar(andar);
+        displayStatus();
+        espera();
     }
 
     /**
-     * Seleciona o andar de destino a partir do Painel Interno do elevador
-     * @param andar andar de destino selecionado
+     * Método para selecionar um andar de dentro do elevador.
+     * @param andar Andar selecionado.
      */
-    public void selecionaAndar(int andar){
+    public void selecionaAndar(int andar) throws InterruptedException {
         painelInterno.pressBotao(andar);
         elevador.requisitarAndar(andar);
+        displayStatus();
+        espera();
     }
 
     /**
-     * Executa uma espera de movimentação do elevador
-      * @throws InterruptedException se a thread for interrompida enquanto ele dorme
+     * Método que faz o elevador esperar enquanto se move entre os andares.
+     * @throws InterruptedException Se a thread for interrompida enquanto dorme.
      */
-   public void espera() throws InterruptedException{
+    private void espera() throws InterruptedException {
         elevador.mover();
         int andarAtual = elevador.getAndarAtual();
-        if (paineisAndar.get(andarAtual).isBotaoSubir()){
+
+        // Reseta os botões de chamada do andar atual
+        if (paineisAndar.get(andarAtual).getBotaoSubir()) {
             paineisAndar.get(andarAtual).resetBotaoSubir();
         }
-        if (paineisAndar.get(andarAtual).isBotaoDescer()){
+        if (paineisAndar.get(andarAtual).getBotaoDescer()) {
             paineisAndar.get(andarAtual).resetBotaoDescer();
         }
+
         painelInterno.resetBotao(andarAtual);
-        displayStatus();
         Thread.sleep(1000);
-   }
+    }
 
     /**
-     * Exibe o status atual do elevador e dos paineis de cada andar
+     * Método para exibir o status atual do elevador e dos andares.
      */
-    private void displayStatus(){
-        System.out.println("Elevador | Andar atual: " + elevador.getAndarAtual() + " | Direcão: "+ elevador.getDirecao());
+    private void displayStatus() {
+        // Exibe o status atual do elevador e dos botões internos
+        System.out.println("Elevador | Andar atual: " + elevador.getAndarAtual() + " | Direção: " + elevador.getDirecao());
         System.out.println("Botões: ");
-        for (int i = 0; i < painelInterno.getBotoes().size(); i++){
-            System.out.print(i + " (" + (painelInterno.getBotoes().get(i) ? "1" : "0" ) + ") ");
+
+        // Exibe o status dos botões internos do elevador
+        for (int i = 0; i < painelInterno.getBotoes().size(); i++) {
+            System.out.print(i + " (" + (painelInterno.getBotoes().get(i) ? "1" : "0") + ") ");
         }
         System.out.println();
-        for(PainelAndar painelAndar : paineisAndar){
-            System.out.println(painelAndar.getAndar() + "o Andar: Elevador: " + elevador.getDirecao() + " | Andar: " + elevador.getAndarAtual() + " | Botões: subir (" +(painelAndar.isBotaoSubir() ? "1" : "0") + ") descer (" + (painelAndar.isBotaoDescer() ? "1" : "0") + ")" );
+
+        // Exibe o status dos botões de subir e descer em cada andar
+        for (PainelAndar painelAndar : paineisAndar) {
+            System.out.println(painelAndar.getAndar() + "o Andar: Elevador: " + elevador.getDirecao() + " | Andar: " + elevador.getAndarAtual() +
+                    " | Botões: subir (" + (painelAndar.getBotaoSubir() ? "1" : "0") +
+                    ") descer (" + (painelAndar.getBotaoDescer() ? "1" : "0") + ")");
         }
     }
 
     /**
-     * Método Get para número de andares
-     * @return numero de andares
+     * Retorna o número de andares do sistema de elevador.
+     * @return Número de andares.
      */
     public int getNumAndares() {
         return numAndares;
     }
+
 }
