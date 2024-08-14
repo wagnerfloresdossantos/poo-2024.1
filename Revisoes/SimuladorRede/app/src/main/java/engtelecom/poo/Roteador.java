@@ -4,7 +4,7 @@ import java.util.HashMap;
 /**
  * Classe que representa um roteador de rede.
  */
-public class Roteador extends Computador implements DispositivoRede{
+public class Roteador extends Identificador implements DispositivoRede{
 
     private HashMap<String, String> tabelaRotas;
     private String portaInternet;

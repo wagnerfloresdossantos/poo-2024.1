@@ -1,11 +1,11 @@
 package engtelecom.poo;
 
-public class Computador {
+public class Identificador {
 
     private String macAddress;
     private String ipAddress;
 
-    public Computador(String macAddress, String ipAddress) {
+    public Identificador(String macAddress, String ipAddress) {
         this.macAddress = macAddress;
         this.ipAddress = ipAddress;
     }

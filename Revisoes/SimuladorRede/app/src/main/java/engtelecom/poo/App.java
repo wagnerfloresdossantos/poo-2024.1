@@ -13,9 +13,13 @@ public class App {
     private Roteador roteador;
     private Firewall firewall;
 
+
+
     /**
      * Configura a topologia de rede conforme a especificação.
      */
+
+
     public App() {
         this.comutador = new Comutador("A1", "1001", new HashMap<>());  // HashMap para MAC -> Porta
         this.roteador = new Roteador("B2", "2001", new HashMap<>(), "eth0");  // HashMap para tabela de rotas
@@ -32,8 +36,8 @@ public class App {
         roteador.addRota("2xxx", "eth2"); // Rota para a rede 2xxx
 
         // Adicionando regras ao firewall
-        firewall.addRegra(new RegrasFiltragem("1001", "8080", "2002", "80", "A2", "Olá, mundo!", Acao.ENCAMINHAR));
-        firewall.addRegra(new RegrasFiltragem("2001", "22", "3001", "443", "B3", "Teste de segurança", Acao.DESCARTAR));
+        firewall.addRegra(new RegrasFiltragem("1001", "8080", "2002", "80", "A2", Acao.ENCAMINHAR));
+        firewall.addRegra(new RegrasFiltragem("2001", "22", "3001", "443", "B3",  Acao.DESCARTAR));
     }
 
     /**
@@ -96,7 +100,7 @@ public class App {
             RegrasFiltragem regra = firewall.getRegras().get(i);
             System.out.println("Regra " + i + ": " + regra.getEnderecoIpOrigem() + ":" +
                     regra.getPortaOrigem() + " -> " + regra.getEnderecoIpDestino() + ":" +
-                    regra.getPortaDestino() + " Ação: " + regra.getAcao());
+                    regra.getPortaDestino() + "MAC destino: " + regra.getMacDestino()+ " Ação: " + regra.getAcao());
         }
     }
 
@@ -123,7 +127,7 @@ public class App {
         int acaoInt = scanner.nextInt();
         Acao acao = (acaoInt == 1) ? Acao.ENCAMINHAR : Acao.DESCARTAR;
 
-        RegrasFiltragem novaRegra = new RegrasFiltragem(ipOrigem, portaOrigem, ipDestino, portaDestino, macDestino, conteudo, acao);
+        RegrasFiltragem novaRegra = new RegrasFiltragem(ipOrigem, portaOrigem, ipDestino, portaDestino, macDestino, acao);
         firewall.addRegra(novaRegra);
         System.out.println("Regra adicionada com sucesso.");
     }

@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  * Classe que representa um comutador (switch) de rede.
  */
-public class Comutador extends Computador implements DispositivoRede {
+public class Comutador extends Identificador implements DispositivoRede {
 
     private HashMap<String, Integer> tabelaMac;
     private static final int MAX_PORTAS = 12;  // Número máximo de portas

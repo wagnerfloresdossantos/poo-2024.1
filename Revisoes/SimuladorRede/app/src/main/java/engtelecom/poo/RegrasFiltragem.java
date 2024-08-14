@@ -1,11 +1,11 @@
 package engtelecom.poo;
 
 import java.util.Objects;
-/**
- * Classe que representa regras de filtragem, herdando de Pacote.
- */
-public class RegrasFiltragem extends Pacote {
 
+/**
+ * Classe que representa regras de filtragem, herdando de EntidadeRede.
+ */
+public class RegrasFiltragem extends DadosRede {
     private Acao acao;
 
     /**
@@ -16,29 +16,28 @@ public class RegrasFiltragem extends Pacote {
      * @param enderecoIpDestino Endereço IP de destino.
      * @param portaDestino      Porta de destino.
      * @param macDestino        Endereço MAC de destino.
-     * @param conteudo          Conteúdo do pacote.
      * @param acao              Ação de filtragem a ser tomada (ENCAMINHAR ou DESCARTAR).
      */
-    public RegrasFiltragem(String enderecoIpOrigem, String portaOrigem, String enderecoIpDestino, String portaDestino, String macDestino, String conteudo, Acao acao) {
-        super(enderecoIpOrigem, portaOrigem, enderecoIpDestino, portaDestino, macDestino, conteudo);
+    public RegrasFiltragem(String enderecoIpOrigem, String portaOrigem, String enderecoIpDestino, String portaDestino, String macDestino, Acao acao) {
+        super(enderecoIpOrigem, portaOrigem, enderecoIpDestino, portaDestino, macDestino);
         this.acao = acao;
     }
 
-    /**
-     * Getter para acessar atributo
-     *
-     * @return A ação a ser tomada
-     */
+    // Getter e setter para o atributo acao
     public Acao getAcao() {
         return acao;
     }
+
+    public void setAcao(Acao acao) {
+        this.acao = acao;
+    }
+
     /**
      * Compara esta regra de filtragem com outro objeto para verificar a igualdade.
      *
      * @param o O objeto a ser comparado.
      * @return true se os objetos forem iguais, false caso contrário.
      */
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,9 +49,11 @@ public class RegrasFiltragem extends Pacote {
                 Objects.equals(getPortaDestino(), pacote.getPortaDestino()) &&
                 Objects.equals(getMacDestino(), pacote.getMacDestino());
     }
+
     /**
      * @return O código hash para esta regra de filtragem.
      */
+    @Override
     public int hashCode() {
         return Objects.hash(getEnderecoIpOrigem(), getPortaOrigem(), getEnderecoIpDestino(), getPortaDestino(), getMacDestino());
     }

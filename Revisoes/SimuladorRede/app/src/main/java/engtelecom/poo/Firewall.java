@@ -1,11 +1,12 @@
 package engtelecom.poo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Classe que representa um firewall de rede.
  */
-public class Firewall extends Computador implements DispositivoRede{
+public class Firewall extends Identificador implements DispositivoRede{
 
     private ArrayList<RegrasFiltragem> regras;
 
