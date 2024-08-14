@@ -23,7 +23,10 @@ public class Pacote extends DadosRede {
         this.conteudo = conteudo;
     }
 
-    // Getters e setters para o atributo conteudo
+    /**
+     * Getters e setters para o atributo conteudo
+     */
+
     public String getConteudo() {
         return conteudo;
     }
@@ -32,6 +35,12 @@ public class Pacote extends DadosRede {
         this.conteudo = conteudo;
     }
 
+    /**
+     * Compara este pacote com outro objeto para verificar a igualdade
+     *
+     * @param o Objeto a ser comparado
+     * @return true se os objetos forem iguais, false caso contrário
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,6 +54,9 @@ public class Pacote extends DadosRede {
                 Objects.equals(conteudo, pacote.conteudo);
     }
 
+    /**
+     * @return O código hash para este pacote.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(enderecoIpOrigem, portaOrigem, enderecoIpDestino, portaDestino, macDestino, conteudo);

@@ -27,7 +27,9 @@ public abstract class DadosRede {
         this.macDestino = macDestino;
     }
 
-    // Getters e setters para os atributos
+    /**
+     * Getters e setters para os atributos     *
+     */
     public String getEnderecoIpOrigem() {
         return enderecoIpOrigem;
     }

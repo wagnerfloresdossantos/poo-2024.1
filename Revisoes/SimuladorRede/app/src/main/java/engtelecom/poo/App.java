@@ -18,8 +18,6 @@ public class App {
     /**
      * Configura a topologia de rede conforme a especificação.
      */
-
-
     public App() {
         this.comutador = new Comutador("A1", "1001", new HashMap<>());  // HashMap para MAC -> Porta
         this.roteador = new Roteador("B2", "2001", new HashMap<>(), "eth0");  // HashMap para tabela de rotas

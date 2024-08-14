@@ -23,7 +23,10 @@ public class RegrasFiltragem extends DadosRede {
         this.acao = acao;
     }
 
-    // Getter e setter para o atributo acao
+    /**
+     * Getter e setter para o atributo acao
+    */
+
     public Acao getAcao() {
         return acao;
     }
